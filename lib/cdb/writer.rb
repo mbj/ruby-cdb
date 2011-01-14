@@ -1,6 +1,7 @@
 module CDB
 class Writer
   alias :[]= :store
+
   def self.create(filename)
     File.open(filename,"wb") do |file|
       p file
@@ -8,6 +9,7 @@ class Writer
       yield writer
       writer.close!
     end
+    nil
   end
 end
 end
