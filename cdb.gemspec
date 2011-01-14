@@ -9,8 +9,8 @@ spec = Gem::Specification.new do |s|
   s.summary = "Reader and writer for CDB Constant Databases"
   s.has_rdoc = false
   s.rubyforge_project = "cdb"
-  files = ["README"]
-  %w(lib lib/cdb test).each do |dir|
+  files = ["README.txt"]
+  %w(lib lib/cdb lib/cdb/ext test).each do |dir|
     files.concat Dir.glob("#{dir}/*")
   end
   s.files = files
