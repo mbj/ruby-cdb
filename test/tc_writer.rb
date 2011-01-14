@@ -4,21 +4,21 @@ require 'test/unit'
 
 require 'test_data'
 
-class TestCDBMaker < Test::Unit::TestCase
+class TestWriter < Test::Unit::TestCase
   include ::CDB
   include ::TestData
 
   def setup
     @tmpfile = Tempfile.new("cdb_maker_test")
-    @db = CDBMaker.new(@tmpfile.to_io)
+    @db = Writer.new(@tmpfile.to_io)
   end
 
   def test_initialize
     assert_raise(Errno::ESPIPE) do
-      CDBMaker.new($stdout)
+      Writer.new($stdout)
     end
     assert_raise(TypeError) do
-      CDBMaker.new("test")
+      Writer.new("test")
     end
   end
 
@@ -28,7 +28,7 @@ class TestCDBMaker < Test::Unit::TestCase
         @db.store(key,value)
       end
     end
-    @db.finish!
-    assert(@db.finished?)
+    @db.close!
+    assert(@db.closed?)
   end
 end

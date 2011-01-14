@@ -1,65 +1,35 @@
-CDB Reader / Cretor for ruby
-============================
+CDB reader / writer for ruby
+=============================
 
 Author: Markus Schirp <mbj@seonic.net>
 License: Ruby's License
 
 Description:
 
-Simple CDB reading an writing Plugin for Ruby.
+Currently buggy simple CDB reading an writing plugin for Ruby.
 
-Constant - Database Reference: 
 
-  http://cr.yp.to/cdb.html
- 
+
+Constant Database Reference: 
+
+http://cr.yp.to/cdb.html
 
 Requirements:
 =============
 
-CDB from DJB or TinyCDB:
+* Ruby 1.9.*
+* TinyCDB, with headers.
 
-  LDFLAGS for cdb:
-    -l:cdb.a -l:unix.a -l:buffer.a -l:byte -l:alloc
-  INCLUDES for cdb:
-    cdb.h
-    cdb_make.h
+TODO:
+=====
 
-  LDFLAG for thinycdb:
-    -lcdb
-  INCLUDES for tinycdb:
-    cdb.h
+* Add support for buildin atomic updates (move after create)
+* Documentation
+* Proper testing
+* Good gemspec
+* Make this more a rubish library, package and so on...
 
-Gentoo Package Names
+Other:
+======
 
-CDB: dev-db/cdb
-TinyCDB: dev-db/tinycdb
-
-Examples:
-=========
-
-reading:
-
-require 'cdb'
-
-File.open("some.cdb") do |file|
-  reader = CDB::CDBReader.new(file)
-  reader.each_value("somekey") do |value|
-    # do something with value
-  end
-end
-
-writing:
-
-require 'cdb'
-
-File.open("some.cdb","w") do |file|
-  CDB::CDBMaker.fill(file) do |maker|
-    (1..10).each do |x|
-      key = "key#{x}"
-      1.upto(x) do |y|
-        value = "value#{x}.#{y}"
-        maker.store(key,value)
-      end
-    end
-  end
-end
+Github pull requests and github bug reports welcome!

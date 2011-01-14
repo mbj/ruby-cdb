@@ -1,3 +1,3 @@
-require 'cdb/cdb_ext'
-require 'cdb/reader_util'
-require 'cdb/maker_util'
+require 'cdb/ext/cdb.so'
+require 'cdb/reader'
+require 'cdb/writer'

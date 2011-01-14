@@ -13,13 +13,11 @@ spec = Gem::Specification.new do |s|
   %w(lib lib/cdb test).each do |dir|
     files.concat Dir.glob("#{dir}/*")
   end
-  files.concat Dir.glob("ext/{*.rb,*.c}")
   s.files = files
-  s.extensions = ["ext/extconf.rb"]
+  s.extensions = ["lib/cdb/ext/extconf.rb"]
   s.test_file = "test/ts_cdb.rb"
 end
 
 if $0 == __FILE__
-  Gem::manage_gems
   Gem::Builder.new(spec).build
 end
