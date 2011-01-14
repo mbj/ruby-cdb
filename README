@@ -1,0 +1,65 @@
+CDB Reader / Cretor for ruby
+============================
+
+Author: Markus Schirp <mbj@seonic.net>
+License: Ruby's License
+
+Description:
+
+Simple CDB reading an writing Plugin for Ruby.
+
+Constant - Database Reference: 
+
+  http://cr.yp.to/cdb.html
+ 
+
+Requirements:
+=============
+
+CDB from DJB or TinyCDB:
+
+  LDFLAGS for cdb:
+    -l:cdb.a -l:unix.a -l:buffer.a -l:byte -l:alloc
+  INCLUDES for cdb:
+    cdb.h
+    cdb_make.h
+
+  LDFLAG for thinycdb:
+    -lcdb
+  INCLUDES for tinycdb:
+    cdb.h
+
+Gentoo Package Names
+
+CDB: dev-db/cdb
+TinyCDB: dev-db/tinycdb
+
+Examples:
+=========
+
+reading:
+
+require 'cdb'
+
+File.open("some.cdb") do |file|
+  reader = CDB::CDBReader.new(file)
+  reader.each_value("somekey") do |value|
+    # do something with value
+  end
+end
+
+writing:
+
+require 'cdb'
+
+File.open("some.cdb","w") do |file|
+  CDB::CDBMaker.fill(file) do |maker|
+    (1..10).each do |x|
+      key = "key#{x}"
+      1.upto(x) do |y|
+        value = "value#{x}.#{y}"
+        maker.store(key,value)
+      end
+    end
+  end
+end
