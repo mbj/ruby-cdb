@@ -1,12 +1,12 @@
 require 'rubygems'
 spec = Gem::Specification.new do |s|
   s.name = "cdb"
-  s.version = "0.0.3"
+  s.version = "0.0.4"
   s.author = "Markus Schirp"
   s.email = "mbj@seonic.net"
   s.homepage = "http://mbj.seonic.net"
   s.platform = Gem::Platform::RUBY
-  s.summary = "Reading and creating CDB Constant Databases"
+  s.summary = "Reader and writer for CDB Constant Databases"
   s.has_rdoc = false
   s.rubyforge_project = "cdb"
   files = ["README"]
